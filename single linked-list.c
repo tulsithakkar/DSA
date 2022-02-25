@@ -6,7 +6,7 @@ struct list //structure
 {
 	int id;
 	struct list *next;
-}*head=NULL,*tem,*last,*node,*tem1; //pointers
+}*head=NULL,*tem,*last=NULL,*node,*tem1; //pointers
 void count()	//count function for count the total  number of nodes
 {
 	 c=0;
@@ -53,12 +53,10 @@ void insertatlast()
 void insertatindex()
 {
 	int index;
-	node=(struct list*)malloc(sizeof(struct list));
 	count();
 	printf("\nenter index");
 	scanf("%d",&index);
-	node->next=NULL;
-	tem=head;
+	
 	int i=1;
 	if(index==1)
 	{
@@ -75,6 +73,9 @@ void insertatindex()
 	}
 	else
 	{
+		node=(struct list*)malloc(sizeof(struct list));
+		node->next=NULL;
+		tem=head;
 		printf("\nenter id:  ");
 		scanf("%d",&node->id);
 		while(i!=index-1)
@@ -156,8 +157,6 @@ void deleteatindex()
 {
 	int index;
 	count();
-	tem=head;
-	
 	printf("\n enter index for which you want yo delete");
 	scanf("%d",&index);
 	if(index==1)
@@ -175,7 +174,7 @@ void deleteatindex()
 	}
 	else
 	{
-		struct list *tem1;
+		tem=head;
 		int i=1;
 		while(i!=index)
 		{
@@ -222,6 +221,8 @@ void main()
 				break;
 		case 8: printf("\n bye....");
 				break;
+		default:printf("\nenter from the given option");
+	 			break;
 	}
 	}while(ch!=8);
 }
